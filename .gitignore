@@ -30,3 +30,6 @@ npm-debug.log*
 /platforms
 /plugins
 /www
+apk_key.jks
+/android/app/release
+/android/app/debug

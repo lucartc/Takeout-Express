@@ -1,5 +1,7 @@
 {
   "name": "takeout_express",
-  "integrations": {},
+  "integrations": {
+    "capacitor": {}
+  },
   "type": "vue-vite"
 }
