@@ -56,13 +56,13 @@
             <div class="flex flex-col gap-2 p-3 grow">
                 <div class="flex flex-row justify-between w-full">
                     <label class="text-xs text-dark">#{{ code }}</label>
-                    <label class="font-bold text-dark">${{ total_order_price }}</label>
+                    <label class="font-bold text-dark">${{ total_order_price.toFixed(2) }}</label>
                 </div>
                 <label class="text-xs text-dark">Ordered in {{ date }}</label>
             </div>
         </div>
         <div v-if="show_items" class="flex flex-col bg-gray-100 w-full min-w-full max-w-full box-border rounded-b-lg p-4 gap-3 relative">
-            <span v-for="item in props.items" class="text-sm overflow-hidden text-ellipsis whitespace-nowrap text-dark">{{ item.quantity }}x {{ item.name }}, ${{ item.total_price }}</span>
+            <span v-for="item in props.items" class="text-sm overflow-hidden text-ellipsis whitespace-nowrap text-dark">{{ item.quantity }}x {{ item.name }}, ${{ item.total_price.toFixed(2) }}</span>
         </div>
     </div>
 </template>

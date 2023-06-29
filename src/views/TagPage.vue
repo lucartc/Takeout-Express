@@ -28,7 +28,7 @@
             return tag.id == route.params.tag_id
         }).pop()
 
-        if(chosen_tag != null){
+        if(chosen_tag){
             return chosen_tag.name[0].toUpperCase()+chosen_tag.name.substring(1)
         }else{
             return null

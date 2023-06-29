@@ -55,24 +55,12 @@
                     let current_user = user.value
                     let current_orders = orders.value
                     let current_notifications = notifications.value
+                    current_user = JSON.parse(current_user)
+                    current_orders = JSON.parse(current_orders)
+                    current_notifications = JSON.parse(current_notifications)
 
-                    if(current_user == null){
-                        throw 'Error'
-                    }else{
-                        current_user = JSON.parse(current_user)
-                    }
-
-                    if(current_orders == null){
-                        throw 'Error'
-                    }else{
-                        current_orders = JSON.parse(current_orders)
-                    }
-
-                    if(current_notifications == null){
-                        current_notifications = []
-                    }else{
-                        current_notifications = JSON.parse(current_notifications)
-                    }
+                    if(!current_user || !current_orders) throw 'Error'
+                    if(!current_notifications) current_notifications = []
 
                     current_orders = current_orders.filter(order => {
                         return order.user_id == current_user.id

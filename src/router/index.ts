@@ -72,7 +72,7 @@ const router = createRouter({
 router.beforeEach(async function(to,from){
   let logged_in = await Preferences.get({key: 'current_user'})
   logged_in = logged_in.value
-  if(logged_in == null){
+  if(!logged_in){
     switch(to.name){
       case 'home':
         return {name: 'start'}

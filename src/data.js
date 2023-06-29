@@ -1,7 +1,7 @@
 import { Preferences } from '@capacitor/preferences'
 
 let data = {
-    restaurants: [
+    restaurants: JSON.stringify([
         {
             'id': 1,
             'name': "John Doe's pizza & pasta",
@@ -145,8 +145,8 @@ let data = {
             'state_letters':'ST',
             'phone':'+0000000000000'
         }
-    ],
-    tags: [
+    ]),
+    tags: JSON.stringify([
         {'id':1, 'name': 'pizza', 'icon': 'tags/pizza.jpeg'},
         {'id':2, 'name': 'pastry', 'icon': 'tags/pastry.jpeg'},
         {'id':3, 'name': 'pasta', 'icon': 'tags/pasta.jpeg'},
@@ -161,8 +161,8 @@ let data = {
         {'id':12, 'name': 'soup', 'icon': 'tags/soup.jpeg'},
         {'id':13, 'name': 'beverages', 'icon': 'tags/beverages.jpeg'},
         {'id':14, 'name': 'burgers', 'icon': 'tags/burgers.jpeg'}
-    ],
-    restaurant_item_tags: [
+    ]),
+    restaurant_item_tags: JSON.stringify([
         {
             'id': 1,
             'restaurant_item_id': 1,
@@ -703,8 +703,8 @@ let data = {
             'restaurant_item_id': 90,
             'tag_id': 14
         },
-    ],
-    restaurant_items: [
+    ]),
+    restaurant_items: JSON.stringify([
         {
             'id': 1,
             'restaurant_id': 8,
@@ -1335,8 +1335,8 @@ let data = {
             'icon': 'dishes/chorizo_burger.jpeg',
             'price': parseFloat((parseFloat((Math.random() * 10000))/100).toFixed(2))
         },
-    ],
-    users: [
+    ]),
+    users: JSON.stringify([
         {
             'id': 1,
             'username': 'johndoe1@gmail.com',
@@ -1362,8 +1362,8 @@ let data = {
             'username': 'johndoe5@gmail.com',
             'password': '123'
         },
-    ],
-    orders: [
+    ]),
+    orders: JSON.stringify([
         {
             'id': 1,
             'user_id': 1,
@@ -1399,8 +1399,8 @@ let data = {
             'code': 'ABCDEF',
             'reviewed': true
         },
-    ],
-    order_items: [
+    ]),
+    order_items: JSON.stringify([
         {
             'id': 1,
             'order_id': 1,
@@ -1491,8 +1491,8 @@ let data = {
             'total_price': 5.0,
             'restaurant_item_id': 73,
         },
-    ],
-    order_item_reviews: [
+    ]),
+    order_item_reviews: JSON.stringify([
         {
             'id': 1,
             'stars': 4,
@@ -1553,8 +1553,8 @@ let data = {
             'order_item_id': 10,
             'date': new Date()
         }
-    ],
-    restaurant_schedules: [
+    ]),
+    restaurant_schedules: JSON.stringify([
         {
             'id': 1,
             'restaurant_id': 1,
@@ -1676,8 +1676,8 @@ let data = {
             'friday': {'start': '08:00 AM', 'end': '17:00 PM'},
             'saturday': {'start': '08:00 AM', 'end': '17:00 PM'},
         },
-    ],
-    restaurant_contacts: [
+    ]),
+    restaurant_contacts: JSON.stringify([
         {
             'id': 1,
             'name': 'instagram profile',
@@ -1810,8 +1810,8 @@ let data = {
             'link': 'http://website.com',
             'restaurant_id': 1,  
         },
-    ],
-    ticket_offerings: [
+    ]),
+    ticket_offerings: JSON.stringify([
         {
             'id': 1,
             'title': 'Have two more slices!',
@@ -1842,8 +1842,8 @@ let data = {
             'subtitle': 'Up to 10% off in mexican dishes',
             'banner': 'banners/mexican_banner.jpeg',
         }
-    ],
-    tickets: [
+    ]),
+    tickets: JSON.stringify([
         {
             id: 1,
             ticket_offering_id: 1,
@@ -1914,7 +1914,7 @@ let data = {
             description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras nisl leo, vehicula eget erat sit amet, ultrices tempus metus. Nullam quis est libero.',
             value: 10
         },
-    ]
+    ])
 }
 
 load_data()
@@ -1933,53 +1933,18 @@ async function load_data(){
     let current_restaurant_schedules = await Preferences.get({key: 'restaurant_schedules'})
     let current_tags = await Preferences.get({key: 'tags'})
 
-    if(current_restaurants.value == null){
-        await Preferences.set({key: 'restaurants', value: JSON.stringify(data.restaurants)})
-    }
-
-    if(current_orders.value == null){
-        await Preferences.set({key: 'orders', value: JSON.stringify(data.orders)})
-    }
-
-    if(current_order_items.value == null){
-        await Preferences.set({key: 'order_items', value: JSON.stringify(data.order_items)})
-    }
-
-    if(current_order_item_reviews.value == null){
-        await Preferences.set({key: 'order_item_reviews', value: JSON.stringify(data.order_item_reviews)})
-    }
-
-    if(current_users.value == null){
-        await Preferences.set({key: 'users', value: JSON.stringify(data.users)})
-    }
-
-    if(current_restaurant_items.value == null){
-        await Preferences.set({key: 'restaurant_items', value: JSON.stringify(data.restaurant_items)})
-    }
-
-    if(current_restaurant_contacts.value == null){
-        await Preferences.set({key: 'restaurant_contacts', value: JSON.stringify(data.restaurant_contacts)})
-    }
-
-    if(current_ticket_offerings.value == null){
-        await Preferences.set({key: 'ticket_offerings', value: JSON.stringify(data.ticket_offerings)})
-    }
-
-    if(current_tickets.value == null){
-        await Preferences.set({key: 'tickets', value: JSON.stringify(data.tickets)})
-    }
-
-    if(current_tags.value == null){
-        await Preferences.set({key: 'tags', value: JSON.stringify(data.tags)})
-    }
-
-    if(current_restaurant_schedules.value == null){
-        await Preferences.set({key: 'restaurant_schedules', value: JSON.stringify(data.restaurant_schedules)})
-    }
-
-    if(current_restaurant_item_tags.value == null){
-        await Preferences.set({key: 'restaurant_item_tags', value: JSON.stringify(data.restaurant_item_tags)})
-    }
+    if(!current_restaurants.value) await Preferences.set({key: 'restaurants', value: data.restaurants})
+    if(!current_orders.value) await Preferences.set({key: 'orders', value: data.orders})
+    if(!current_order_items.value) await Preferences.set({key: 'order_items', value: data.order_items})
+    if(!current_order_item_reviews.value) await Preferences.set({key: 'order_item_reviews', value: data.order_item_reviews})
+    if(!current_users.value) await Preferences.set({key: 'users', value: data.users})
+    if(!current_restaurant_items.value) await Preferences.set({key: 'restaurant_items', value: data.restaurant_items})
+    if(!current_restaurant_contacts.value) await Preferences.set({key: 'restaurant_contacts', value: data.restaurant_contacts})
+    if(!current_ticket_offerings.value) await Preferences.set({key: 'ticket_offerings', value: data.ticket_offerings})
+    if(!current_tickets.value) await Preferences.set({key: 'tickets', value: data.tickets})
+    if(!current_tags.value) await Preferences.set({key: 'tags', value: data.tags})
+    if(!current_restaurant_schedules.value) await Preferences.set({key: 'restaurant_schedules', value: data.restaurant_schedules})
+    if(!current_restaurant_item_tags.value) await Preferences.set({key: 'restaurant_item_tags', value: data.restaurant_item_tags})
 }
 
 async function create_order(){
@@ -1987,34 +1952,14 @@ async function create_order(){
     let order_items = await Preferences.get({key: 'order_items'})
     let cart = await Preferences.get({key: 'cart'})
     let current_user = await Preferences.get({key: 'current_user'})
-    orders = orders.value
-    order_items = order_items.value
-    cart = cart.value
-    current_user = current_user.value
-    
-    if(orders == null){
-        orders = []
-    }else{
-        orders = JSON.parse(orders)
-    }
+    orders = JSON.parse(orders.value)
+    order_items = JSON.parse(order_items.value)
+    cart = JSON.parse(cart.value)
+    current_user = JSON.parse(current_user.value)
 
-    if(order_items == null){
-        order_items = []
-    }else{
-        order_items = JSON.parse(order_items)
-    }
-
-    if(cart == null){
-        throw 'Error'
-    }else{
-        cart = JSON.parse(cart)
-    }
-
-    if(current_user == null){
-        throw 'Error'
-    }else{
-        current_user = JSON.parse(current_user)
-    }
+    if(!orders) orders = []
+    if(!order_items) order_items = []
+    if(!cart || !current_user) throw 'Error'
 
     let new_order = {
         id: get_max_id(orders)+1,
@@ -2046,67 +1991,16 @@ async function create_order(){
     await Preferences.remove({key: 'cart'})
 }
 
-async function create_review(data){
-    let orders = await Preferences.get({key: 'orders'})
-    let order_items = await Preferences.get({key: 'order_items'})
-    let order_item_reviews = await Preferences.get({key: 'order_item_reviews'})
-    orders = orders.value
-    order_items = order_items.value
-    order_item_reviews = order_item_reviews.value
-
-    if(orders == null){
-        throw 'Error'
-    }else{
-        orders = JSON.parse(orders)
-    }
-
-    if(order_items == null){
-        throw 'Error'
-    }else{
-        order_items = JSON.parse(order_items)
-    }
-
-    has_item_reviews = false
-
-    order_item_reviews.forEach(order_item => {
-        let has_order_item_reviews = false
-        data.items.forEach(item => {
-            if(item.order_item_id == order_item.order_item_id){
-                has_order_item_reviews = true
-            }
-        })
-        if(has_order_item_reviews){
-            has_item_reviews = true
-        }
-    })
-
-    if(has_item_reviews){
-        throw 'Error'
-    }else{
-        data.items.forEach(item => {
-            order_item_reviews.push(item)
-        })
-
-        await Preferences.set({key: 'order_item_reviews', value: JSON.stringify(order_item_reviews)})
-    }
-}
-
 async function add_ticket(data){
     let user = await Preferences.get({key: 'current_user'})
-    user = user.value
-    let current_user_tickets = []
-
-    if(user == null){
-        throw 'Error'
-    }else{
-        user = JSON.parse(user)
-    }
-
     let user_tickets = await Preferences.get({key: 'user_tickets'})
-    user_tickets = user_tickets.value
+    let current_user_tickets = []
+    user = JSON.parse(user.value)
+    user_tickets = JSON.parse(user_tickets.value)
+
+    if(!user) throw 'Error'
     
-    if(user_tickets != null){
-        user_tickets = JSON.parse(user_tickets)
+    if(user_tickets){
         data.id = get_max_id(user_tickets)+1
         current_user_tickets = user_tickets[current_user.id]
     }else{
@@ -2123,26 +2017,20 @@ async function add_ticket(data){
 async function search(data){
     let restaurants = await Preferences.get({key: 'restaurants'})
     let dishes = await Preferences.get({key: 'restaurant_items'})
-    restaurants = restaurants.value
-    dishes = dishes.value
+    restaurants = JSON.parse(restaurants.value)
+    dishes = JSON.parse(dishes.value)
     let restaurant_results = []
     let dishes_results = []
     let words = data.search_string.toLowerCase().split(' ')
     let regex = words.join('|')
 
-    if(dishes != null){
-        dishes = JSON.parse(dishes)
-        dishes_results = dishes.filter(dish => {
-            return dish.name.toLowerCase().match(regex)
-        })
-    }
+    dishes_results = dishes.filter(dish => {
+        return dish.name.toLowerCase().match(regex)
+    })
 
-    if(restaurants != null){
-        restaurants = JSON.parse(restaurants)
-        restaurant_results = restaurants.filter(restaurant => {
-            return restaurant.name.toLowerCase().match(regex)
-        })
-    }
+    restaurant_results = restaurants.filter(restaurant => {
+        return restaurant.name.toLowerCase().match(regex)
+    })
 
     restaurant_results = restaurant_results.map(async function(result){
         let reviews = await get_restaurant_reviews({id: result.id})
@@ -2168,21 +2056,11 @@ async function add_to_cart(data){
     let current_user = await Preferences.get({key: 'current_user'})
     let restaurant_item = null
     let is_already_in_cart = false
-    cart = cart.value
-    restaurant_items = restaurant_items.value
-    current_user = current_user.value
+    cart = JSON.parse(cart.value)
+    restaurant_items = JSON.parse(restaurant_items.value)
+    current_user = JSON.parse(current_user.value)
 
-    if(current_user == null){
-        throw 'Error'
-    }else{
-        current_user = JSON.parse(current_user)
-    }
-
-    if(restaurant_items == null){
-        throw 'Error'
-    }else{
-        restaurant_items = JSON.parse(restaurant_items)
-    }
+    if(!current_user || !restaurant_items) throw 'Error'
 
     restaurant_item = restaurant_items.filter(item => {
         return item.id == data.id
@@ -2190,11 +2068,10 @@ async function add_to_cart(data){
 
     restaurant_item.user_id = current_user.id
 
-    if(cart == null){
+    if(!cart){
         cart = []
         restaurant_item.cart_id = 1
     }else{
-        cart = JSON.parse(cart)
         if(cart.length == 0 ){
             restaurant_item.cart_id = 1
         }else{
@@ -2205,9 +2082,7 @@ async function add_to_cart(data){
     }
 
     cart.forEach(item => {
-        if(item.id == data.id){
-            is_already_in_cart = true
-        }
+        if(item.id == data.id) is_already_in_cart = true
     })
 
     if(!is_already_in_cart){
@@ -2219,32 +2094,27 @@ async function add_to_cart(data){
 
 async function remove_from_cart(data){
     let cart = await Preferences.get({key: 'cart'})
-    cart = cart.value
+    cart = JSON.parse(cart.value)
 
-    if(cart == null){
-        throw 'Error'
-    }else{
-        cart = JSON.parse(cart)
-        cart = cart.filter(item => {
-            return item.cart_id != data.cart_id
-        })
-        await Preferences.set({key: 'cart', value: JSON.stringify(cart)})
-    }
+    if(!cart) throw 'Error'
+
+    cart = cart.filter(item => {
+        return item.cart_id != data.cart_id
+    })
+
+    await Preferences.set({key: 'cart', value: JSON.stringify(cart)})
 }
 
 async function update_cart_item(data){
     let cart = await Preferences.get({key: 'cart'})
     let cart_items = []
-    cart = cart.value
+    cart = JSON.parse(cart.value)
 
-    if(cart == null){
-        throw 'Error'
-    }else{
-        cart = JSON.parse(cart)
-        cart_items = cart.filter(item => {
-            return item.cart_id != data.cart_id
-        })
-    }
+    if(!cart) throw 'Error'
+    
+    cart_items = cart.filter(item => {
+        return item.cart_id != data.cart_id
+    })
 
     cart_items.push(data)
     await Preferences.set({key: 'cart', value: JSON.stringify(cart_items)})
@@ -2252,13 +2122,9 @@ async function update_cart_item(data){
 
 async function login(data){
     let users = await Preferences.get({key: 'users'})
-    users = users.value
+    users = JSON.parse(users.value)
 
-    if(users == null){
-        throw 'Error'
-    }else{
-        users = JSON.parse(users)
-    }
+    if(!users) throw 'Error'
 
     let registered_user = users.filter(user => {
         if(user.username.toString() == data.username.toString() && user.password.toString() == data.password.toString()){
@@ -2268,35 +2134,27 @@ async function login(data){
         }
     })
 
-    if(registered_user.length == 1){
-        let current_user = registered_user.pop()
-        await Preferences.set({key: 'current_user', value: JSON.stringify(current_user)})
-        return current_user
-    }else{
-        throw  'Error'
-    }
+    if(registered_user.length != 1) throw 'Error'
+    
+    let current_user = registered_user.pop()
+    await Preferences.set({key: 'current_user', value: JSON.stringify(current_user)})
+    return current_user
 }
 
 async function logout(){
     let current_user = await Preferences.get({key: 'current_user'})
     current_user = current_user.value
 
-    if(current_user == null){
-        throw 'Error'
-    }else{
-        await Preferences.remove({key: 'current_user'})
-    }
+    if(!current_user) throw 'Error'
+    
+    await Preferences.remove({key: 'current_user'})
 }
 
 async function register(data){
     let users = await Preferences.get({key: 'users'})
-    users = users.value
+    users = JSON.parse(users.value)
 
-    if(users == null){
-        throw 'Error'
-    }else{
-        users = JSON.parse(users)
-    }
+    if(!users) throw 'Error'
 
     data.id = get_max_id(users)+1
     users.push(data)
@@ -2305,13 +2163,9 @@ async function register(data){
 
 async function get_tags(){
     let tags = await Preferences.get({key: 'tags'})
-    tags = tags.value
+    tags = JSON.parse(tags.value)
 
-    if(tags == null){
-        throw 'Error'
-    }else{
-        tags = JSON.parse(tags)
-    }
+    if(!tags) throw 'Error'
 
     return tags
 }
@@ -2321,33 +2175,13 @@ async function get_orders(){
     let orders = await Preferences.get({key: 'orders'})
     let order_items = await Preferences.get({key: 'order_items'})
     let restaurant_items = await Preferences.get({key: 'restaurant_items'})
-    current_user = current_user.value
-    orders = orders.value
-    order_items = order_items.value
-    restaurant_items = restaurant_items.value
+    current_user = JSON.parse(current_user.value)
+    orders = JSON.parse(orders.value)
+    order_items = JSON.parse(order_items.value)
+    restaurant_items = JSON.parse(restaurant_items.value)
 
-    if(current_user == null){
+    if(!current_user || !orders || !order_items || !restaurant_items){
         throw 'Error'
-    }else{
-        current_user = JSON.parse(current_user)
-    }
-
-    if(orders == null){
-        throw 'Error'
-    }else{
-        orders = JSON.parse(orders)
-    }
-
-    if(order_items == null){
-        throw 'Error'
-    }else{
-        order_items = JSON.parse(order_items)
-    }
-
-    if(restaurant_items == null){
-        throw 'Error'
-    }else{
-        restaurant_items = JSON.parse(restaurant_items)
     }
 
     orders = orders.filter(order => {
@@ -2383,20 +2217,10 @@ async function get_orders(){
 async function get_tag_dishes(data){
     let dishes = await Preferences.get({key: 'restaurant_items'})
     let item_tags = await Preferences.get({key: 'restaurant_item_tags'})
-    dishes = dishes.value
-    item_tags = item_tags.value
+    item_tags = JSON.parse(item_tags.value)
+    dishes = JSON.parse(dishes.value)
 
-    if(item_tags == null){
-        throw 'Error'
-    }else{
-        item_tags = JSON.parse(item_tags)
-    }
-
-    if(dishes == null){
-        throw 'Error'
-    }else{
-        dishes = JSON.parse(dishes)
-    }
+    if(!item_tags || !dishes) throw 'Error'
 
     item_tags = item_tags.filter(item => {
         return item.tag_id == data.id
@@ -2418,13 +2242,9 @@ async function get_tag_dishes(data){
 
 async function get_restaurant_dish(data){
     let restaurant_items = await Preferences.get({key: 'restaurant_items'})
-    restaurant_items = restaurant_items.value
+    restaurant_items = JSON.parse(restaurant_items.value)
 
-    if(restaurant_items == null){
-        throw 'Error'
-    }else{
-        restaurant_items = JSON.parse(restaurant_items)
-    }
+    if(!restaurant_items) throw 'Error'
 
     return restaurant_items
     .filter(item => {
@@ -2444,27 +2264,11 @@ async function get_dish_reviews(data){
     let order_items = await Preferences.get({key: 'order_items'})
     let order_item_reviews = await Preferences.get({key: 'order_item_reviews'})
     let dish_rating = 0.0
-    restaurant_items = restaurant_items.value
-    order_items = order_items.value
-    order_item_reviews = order_item_reviews.value
+    order_item_reviews = JSON.parse(order_item_reviews.value)
+    restaurant_items = JSON.parse(restaurant_items.value)
+    order_items = JSON.parse(order_items.value)
 
-    if(order_item_reviews == null){
-        throw 'Error'
-    }else{
-        order_item_reviews = JSON.parse(order_item_reviews)
-    }
-
-    if(restaurant_items == null){
-        throw 'Error'
-    }else{
-        restaurant_items = JSON.parse(restaurant_items)
-    }
-
-    if(order_items == null){
-        throw 'Error'
-    }else{
-        order_items = JSON.parse(order_items)
-    }
+    if(!order_item_reviews || !restaurant_items || !order_items) throw 'Error'
 
     let item_reviews = order_item_reviews.filter(review => {
         let order_item = order_items.filter(item => item.id == review.order_item_id).pop()
@@ -2484,27 +2288,11 @@ async function get_restaurant_reviews(data){
     let order_items = await Preferences.get({key: 'order_items'})
     let restaurant_items = await Preferences.get({key: 'restaurant_items'})
     let restaurant_rating = 0.0
-    order_item_reviews = order_item_reviews.value
-    order_items = order_items.value
-    restaurant_items = restaurant_items.value
+    order_item_reviews = JSON.parse(order_item_reviews.value)
+    order_items = JSON.parse(order_items.value)
+    restaurant_items = JSON.parse(restaurant_items.value)
 
-    if(order_item_reviews == null){
-        throw 'Error'
-    }else{
-        order_item_reviews = JSON.parse(order_item_reviews)
-    }
-
-    if(order_items == null){
-        throw 'Error'
-    }else{
-        order_items = JSON.parse(order_items)
-    }
-
-    if(restaurant_items == null){
-        throw 'Error'
-    }else{
-        restaurant_items = JSON.parse(restaurant_items)
-    }
+    if(!order_item_reviews || !order_items || !restaurant_items) throw 'Error'
 
     let dishes = restaurant_items.filter(restaurant_item => {
         return restaurant_item.restaurant_id == data.id
@@ -2529,10 +2317,12 @@ async function get_restaurant_reviews(data){
                 })
             }
         })
+
         if(!review.hasOwnProperty('icon') && !review.hasOwnProperty('name')){
             review.icon = 'icons/product_not_found.svg'
             review.name = 'Product not found'
         }
+
         return review
     })
 
@@ -2546,20 +2336,12 @@ async function get_restaurant_reviews(data){
 async function get_cart_items(){
     let cart_items = await Preferences.get({key: 'cart'})
     let current_user = await Preferences.get({key: 'current_user'})
-    cart_items = cart_items.value
-    current_user = current_user.value
+    current_user = JSON.parse(current_user.value)
+    cart_items = JSON.parse(cart_items.value)
 
-    if(current_user == null){
-        throw 'Error'
-    }else{
-        current_user = JSON.parse(current_user)
-    }
+    if(!current_user) throw 'Error'
 
-    if(cart_items == null){
-        return []
-    }else{
-        cart_items = JSON.parse(cart_items)
-    }
+    if(!cart_items) return []
 
     cart_items = cart_items.filter(item => {
         return item.user_id == current_user.id
@@ -2568,26 +2350,11 @@ async function get_cart_items(){
     return cart_items
 }
 
-async function get_notifications(){
-    let notifications = await Preferences.get({key: 'notifications'})
-    notifications = notifications.value
-
-    if(notifications == null){
-        return []
-    }else{
-        return JSON.parse(notifications)
-    }
-}
-
 async function get_restaurant(data){
     let restaurants = await Preferences.get({key: 'restaurants'})
-    restaurants = restaurants.value
+    restaurants = JSON.parse(restaurants.value)
 
-    if(restaurants == null){
-        throw 'Error'
-    }else{
-        restaurants = JSON.parse(restaurants)
-    }
+    if(!restaurants) throw 'Error'
 
     return restaurants
     .filter(restaurant => {
@@ -2604,13 +2371,9 @@ async function get_restaurant(data){
 
 async function get_restaurant_dishes(data){
     let restaurant_items = await Preferences.get({key: 'restaurant_items'})
-    restaurant_items = restaurant_items.value
+    restaurant_items = JSON.parse(restaurant_items.value)
 
-    if(restaurant_items == null){
-        throw 'Error'
-    }else{
-        restaurant_items = JSON.parse(restaurant_items)
-    }
+    if(!restaurant_items) throw 'Error'
 
     return Promise.all(restaurant_items
     .filter(item => {
@@ -2626,13 +2389,9 @@ async function get_restaurant_dishes(data){
 
 async function get_restaurant_schedule(data){
     let restaurant_schedules = await Preferences.get({key: 'restaurant_schedules'})
-    restaurant_schedules = restaurant_schedules.value
+    restaurant_schedules = JSON.parse(restaurant_schedules.value)
 
-    if(restaurant_schedules == null){
-        throw 'Error'
-    }else{
-        restaurant_schedules = JSON.parse(restaurant_schedules)
-    }
+    if(!restaurant_schedules) throw 'Error'
 
     return restaurant_schedules.filter(schedule => {
         return schedule.restaurant_id == data.id
@@ -2641,13 +2400,9 @@ async function get_restaurant_schedule(data){
 
 async function get_restaurant_contacts(data){
     let restaurant_contacts = await Preferences.get({key: 'restaurant_contacts'})
-    restaurant_contacts = restaurant_contacts.value
+    restaurant_contacts = JSON.parse(restaurant_contacts.value)
     
-    if(restaurant_contacts == null){
-        throw 'Error'
-    }else{
-        restaurant_contacts = JSON.parse(restaurant_contacts)
-    }
+    if(!restaurant_contacts) throw 'Error'
 
     return restaurant_contacts.filter(item => {
         return item.id == data.id
@@ -2656,19 +2411,16 @@ async function get_restaurant_contacts(data){
 
 async function get_featured_items(){
     let items = []
-    let restaurant_items = await Preferences.get({key: 'restaurant_items'})
-    restaurant_items = restaurant_items.value
     let last_id = null
+    let restaurant_items = await Preferences.get({key: 'restaurant_items'})
+    restaurant_items = JSON.parse(restaurant_items.value)
 
-    if(restaurant_items == null){
-        throw 'Error'
-    }else{
-        restaurant_items = JSON.parse(restaurant_items)
-        restaurant_items = restaurant_items.sort((a,b) => {
-            return a.id - b.id
-        })
-        last_id = get_max_id(restaurant_items)
-    }
+    if(!restaurant_items) throw 'Error'
+
+    restaurant_items = restaurant_items.sort((a,b) => {
+        return a.id - b.id
+    })
+    last_id = get_max_id(restaurant_items)
 
     for(let i = 0; i < 9; i++){
         let new_item = Math.floor(Math.random()*(last_id+1))
@@ -2693,26 +2445,18 @@ async function get_featured_items(){
 
 async function get_ticket_offerings(){
     let ticket_offerings = await Preferences.get({key: 'ticket_offerings'})
-    ticket_offerings = ticket_offerings.value
+    ticket_offerings = JSON.parse(ticket_offerings.value)
 
-    if(ticket_offerings == null){
-        throw 'Error'
-    }else{
-        ticket_offerings = JSON.parse(ticket_offerings)
-    }
+    if(!ticket_offerings) throw 'Error'
 
     return ticket_offerings
 }
 
 async function get_ticket_offering_tickets(data){
     let tickets = await Preferences.get({key: 'tickets'})
-    tickets = tickets.value
-
-    if(tickets == null){
-        throw 'Error'
-    }else{
-        tickets = JSON.parse(tickets)
-    }
+    tickets = JSON.parse(tickets.value)
+    
+    if(!tickets) throw 'Error'
 
     return tickets.filter(ticket => {
         return ticket.ticket_offering_id == data.id
@@ -2723,27 +2467,13 @@ async function get_user_tickets(){
     let current_user = await Preferences.get({key: 'current_user'})
     let user_tickets = await Preferences.get({key: 'user_tickets'})
     let tickets = await Preferences.get({key: 'tickets'})
-    current_user = current_user.value
-    user_tickets = user_tickets.value
-    tickets = tickets.value
+    current_user = JSON.parse(current_user.value)
+    user_tickets = JSON.parse(user_tickets.value)
+    tickets = JSON.parse(tickets.value)
 
-    if(current_user == null){
-        throw 'Error'
-    }else{
-        current_user = JSON.parse(current_user)
-    }
-
-    if(user_tickets == null){
-        return []
-    }else{
-        user_tickets = JSON.parse(user_tickets)
-    }
-
-    if(tickets == null){
-        return []
-    }else{
-        tickets = JSON.parse(tickets)
-    }
+    if(!current_user) throw 'Error'
+    if(!user_tickets) return []
+    if(!tickets) return []
 
     user_tickets = user_tickets.filter(ticket => {
         return ticket.user_id == current_user.id
@@ -2760,36 +2490,19 @@ async function choose_ticket(data){
     let current_user = await Preferences.get({key: 'current_user'})
     let tickets = await Preferences.get({key: 'tickets'})
     let user_tickets = await Preferences.get({key: 'user_tickets'})
-    current_user = current_user.value
-    tickets = tickets.value
-    user_tickets = user_tickets.value
+    current_user = JSON.parse(current_user.value)
+    tickets = JSON.parse(tickets.value)
+    user_tickets = JSON.parse(user_tickets.value)
 
-    if(current_user == null){
-        throw 'Error'
-    }else{
-        current_user = JSON.parse(current_user)
-    }
-
-    if(tickets == null){
-        throw 'Error'
-    }else{
-        tickets = JSON.parse(tickets)
-    }
-
-    if(user_tickets == null){
-        user_tickets = []
-    }else{
-        user_tickets = JSON.parse(user_tickets)
-    }
+    if(!current_user || !tickets) throw 'Error'
+    if(!user_tickets) user_tickets = []
 
     let ticket = tickets.filter(item => {
         return item.id == data.id
     }).pop()
 
     ticket.user_id = current_user.id
-
     user_tickets.push(ticket)
-
     await Preferences.set({key: 'user_tickets',value: JSON.stringify(user_tickets)})
 }
 
@@ -2806,13 +2519,9 @@ function get_max_id(data){
 
 async function generate_random_code(){
     let orders = await Preferences.get({key: 'orders'})
-    orders = orders.value
+    orders = JSON.parse(orders.value)
     
-    if(orders == null){
-        throw 'Error'
-    }else{
-        orders = JSON.parse(orders)
-    }
+    if(!orders) throw 'Error'
 
     let code_digits = new Array(20).fill(1)
 
@@ -2835,7 +2544,6 @@ async function generate_random_code(){
 
 export{
     create_order,
-    create_review,
     add_ticket,
     search,
     add_to_cart,
@@ -2849,7 +2557,6 @@ export{
     get_restaurant_dish,
     get_dish_reviews,
     get_cart_items,
-    get_notifications,
     get_restaurant,
     get_restaurant_dishes,
     get_restaurant_contacts,

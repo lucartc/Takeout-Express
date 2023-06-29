@@ -65,12 +65,9 @@ onIonViewDidEnter(async() => {
     Preferences.get({key: 'notifications'})
     .then(data => {
         let current_notifications = data.value
+        current_notifications = JSON.parse(current_notifications)
 
-        if(current_notifications == null){
-          current_notifications = []
-        }else{
-          current_notifications = JSON.parse(current_notifications)
-        }
+        if(!current_notifications) current_notifications = []
 
         current_notifications.push(notification)
 

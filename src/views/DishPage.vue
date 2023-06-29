@@ -76,13 +76,13 @@
                     <label class="text-2xl font-bold text-orange-500">${{ dish?.price?.toFixed(2) }}</label>
                 </div>
                 <div @click="go_to_restaurant_page" class="ml-auto flex flex-row w-full min-w-full max-w-full aspect-[8/1] rounded-lg">
-                    <img class="aspect-square h-full min-h-full max-h-full rounded-lg drop-shadow-md" :src="restaurant == null ? 'icons/dummy.svg' : restaurant.profile">
+                    <img class="aspect-square h-full min-h-full max-h-full rounded-lg drop-shadow-md" :src="!restaurant ? 'icons/dummy.svg' : restaurant.profile">
                     <div class="flex flex-row justify-start items-center bg-gray-100 px-4 box-border rounded-r-lg drop-shadow-md grow">
                         <label class="text-xs self-center text-dark font-bold">{{ restaurant?.name }}</label>
                     </div>
                 </div>
                 <div class="w-full min-w-full max-w-full aspect-[2/1] rounded-lg drop-shadow-md relative">
-                    <img class="w-full min-w-full max-w-full aspect-[2/1] rounded-lg object-cover" :src="dish == null ? 'icons/dummy.svg' : dish.icon">
+                    <img class="w-full min-w-full max-w-full aspect-[2/1] rounded-lg object-cover" :src="!dish ? 'icons/dummy.svg' : dish.icon">
                     <div class="flex flex-col bg-yellow-500 justify-center p-2 box-border absolute top-[0%] right-[0%] rounded-lg rounded-br-none rounded-tl-none drop-shadow-md">
                         <label class="text-xs text-dark">{{ dish?.rating?.toFixed(2) }} stars, {{ dish?.reviews }} reviews</label>
                     </div>

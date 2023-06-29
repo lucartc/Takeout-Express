@@ -105,7 +105,7 @@
     <ion-page class="flex flex-col justify-start">
         <PageContentComponent ref="page">
             <div class="w-full min-w-full max-w-full aspect-[2/1] rounded-lg flex flex-row justify-center items-center relative drop-shadow-md">
-                <img class="rounded-lg brightness-[65%] w-full min-w-full max-w-full h-full min-h-full max-h-full object-cover" :src="ticket_offering == null ? 'icons/dummy.svg' : ticket_offering.banner">
+                <img class="rounded-lg brightness-[65%] w-full min-w-full max-w-full h-full min-h-full max-h-full object-cover" :src="!ticket_offering ? 'icons/dummy.svg' : ticket_offering.banner">
                 <div class="rounded-lg backdrop-blur-[1px] absolute w-full min-w-full max-w-full h-full min-h-full max-h-full bg-[linear-gradient(#00000040,#ffffff20)]"></div>
                 <div class="rounded-lg absolute top-auto left-auto p-4 box-border flex flex-col items-start w-full min-w-full max-w-full h-full min-h-full max-h-full justify-center">
                     <label class="text-white text-4xl font-bold">{{ ticket_offering?.title }}</label>
