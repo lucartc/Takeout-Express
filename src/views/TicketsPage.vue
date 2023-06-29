@@ -13,9 +13,7 @@
 
     onIonViewDidEnter(() => {
         get_user_tickets()
-        .then(data => {
-            tickets.value = data
-        })
+        .then(data => tickets.value = data)
         .catch(err => console.log('Error'))
         page.value.update_cart_counter()
     })

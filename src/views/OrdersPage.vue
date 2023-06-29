@@ -14,10 +14,8 @@
 
     onIonViewDidEnter(() => {
         get_orders()
-        .then(data => {
-            orders.value = data
-        })
-        .catch(err => { console.log('Error',err)})
+        .then(data => orders.value = data)
+        .catch(err => console.log('Error'))
         page.value.update_cart_counter()
     })
 </script>

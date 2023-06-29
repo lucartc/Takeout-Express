@@ -41,15 +41,13 @@
 
     function try_logout(){
         logout()
-        .then(data => { router.push('/home') })
-        .catch(err => { console.log('Error') })
+        .then(data => router.push('/home'))
+        .catch(err => console.log('Error'))
     }
 
     function update_cart_items(){
         get_cart_items()
-        .then(data => {
-            cart_items.value = data
-        })
+        .then(data => cart_items.value = data)
         .catch(err => console.log('Error'))
     }
 

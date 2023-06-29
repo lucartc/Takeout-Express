@@ -64,38 +64,22 @@
         get_restaurant(data)
         .then(data => {
             restaurant.value = data
-
-            let params = {
-                id: restaurant.value.id
-            }
-
+            let params = { id: restaurant.value.id }
             return get_restaurant_dishes(params)
         })
         .then(data => {
             dishes.value = data
-
-            let params = {
-                id: restaurant.value.id
-            }
-
+            let params = { id: restaurant.value.id }
             return get_restaurant_schedule(params)
         })
         .then(data => {
             schedule.value = data
-
-            let params = {
-                id: restaurant.value.id
-            }
-
+            let params = { id: restaurant.value.id }
             return get_restaurant_contacts(params)
         })
         .then(data => {
             contacts.value = data
-
-            let params = {
-                id: restaurant.value.id
-            }
-
+            let params = { id: restaurant.value.id }
             return get_restaurant_reviews(params)
         })
         .then(data => {

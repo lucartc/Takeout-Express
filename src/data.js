@@ -2024,13 +2024,13 @@ async function search(data){
     let words = data.search_string.toLowerCase().split(' ')
     let regex = words.join('|')
 
-    dishes_results = dishes.filter(dish => {
-        return dish.name.toLowerCase().match(regex)
-    })
+    dishes_results = dishes
+                    .filter(dish => dish.name.toLowerCase().match(regex))
 
-    restaurant_results = restaurants.filter(restaurant => {
-        return restaurant.name.toLowerCase().match(regex)
-    })
+    restaurant_results = restaurants
+                        .filter(restaurant => {
+                            return restaurant.name.toLowerCase().match(regex)
+                        })
 
     restaurant_results = restaurant_results.map(async function(result){
         let reviews = await get_restaurant_reviews({id: result.id})
@@ -2061,11 +2061,7 @@ async function add_to_cart(data){
     current_user = JSON.parse(current_user.value)
 
     if(!current_user || !restaurant_items) throw 'Error'
-
-    restaurant_item = restaurant_items.filter(item => {
-        return item.id == data.id
-    }).pop()
-
+    restaurant_item = restaurant_items.filter(item => item.id == data.id).pop()
     restaurant_item.user_id = current_user.id
 
     if(!cart){
@@ -2097,11 +2093,7 @@ async function remove_from_cart(data){
     cart = JSON.parse(cart.value)
 
     if(!cart) throw 'Error'
-
-    cart = cart.filter(item => {
-        return item.cart_id != data.cart_id
-    })
-
+    cart = cart.filter(item => item.cart_id != data.cart_id)
     await Preferences.set({key: 'cart', value: JSON.stringify(cart)})
 }
 
@@ -2127,11 +2119,7 @@ async function login(data){
     if(!users) throw 'Error'
 
     let registered_user = users.filter(user => {
-        if(user.username.toString() == data.username.toString() && user.password.toString() == data.password.toString()){
-            return true
-        }else{
-            return false
-        }
+        return (user.username.toString() == data.username.toString() && user.password.toString() == data.password.toString())
     })
 
     if(registered_user.length != 1) throw 'Error'
@@ -2184,16 +2172,12 @@ async function get_orders(){
         throw 'Error'
     }
 
-    orders = orders.filter(order => {
-        return order.user_id == current_user.id
-    })
+    orders = orders.filter(order => order.user_id == current_user.id)
 
     orders = orders.map(order => {
         order.items = []
         order_items.forEach(order_item => {
-            if(order_item.order_id == order.id){
-                order.items.push(order_item)
-            }
+            if(order_item.order_id == order.id) order.items.push(order_item)
         })
 
         order.items = order.items.map(order_item => {
@@ -2205,6 +2189,7 @@ async function get_orders(){
             if(!order_item.hasOwnProperty('icon')){
                 order_item.icon = 'icons/product_not_found.svg'
             }
+
             return order_item
         })
 
@@ -2221,10 +2206,7 @@ async function get_tag_dishes(data){
     dishes = JSON.parse(dishes.value)
 
     if(!item_tags || !dishes) throw 'Error'
-
-    item_tags = item_tags.filter(item => {
-        return item.tag_id == data.id
-    })
+    item_tags = item_tags.filter(item => item.tag_id == data.id)
 
     dishes = dishes.filter(dish => {
         return item_tags.map(item => item.restaurant_item_id).indexOf(dish.id) >= 0
@@ -2247,16 +2229,14 @@ async function get_restaurant_dish(data){
     if(!restaurant_items) throw 'Error'
 
     return restaurant_items
-    .filter(item => {
-        return item.id == data.id
-    })
-    .map(async function(item){
-        let reviews = await get_dish_reviews({id: item.id})
-        item.rating = reviews.rating
-        item.reviews = reviews.reviews.length
-        return item
-    })
-    .pop()
+            .filter(item => item.id == data.id)
+            .map(async function(item){
+                let reviews = await get_dish_reviews({id: item.id})
+                item.rating = reviews.rating
+                item.reviews = reviews.reviews.length
+                return item
+            })
+            .pop()
 }
 
 async function get_dish_reviews(data){
@@ -2303,7 +2283,9 @@ async function get_restaurant_reviews(data){
     })
 
     order_item_reviews = order_item_reviews.filter(order_item_review => {
-        return order_items.map(item => item.id).indexOf(order_item_review.order_item_id) >= 0
+        return order_items
+        .map(item => item.id)
+        .indexOf(order_item_review.order_item_id) >= 0
     })
 
     order_item_reviews = order_item_reviews.map(review => {
@@ -2343,9 +2325,7 @@ async function get_cart_items(){
 
     if(!cart_items) return []
 
-    cart_items = cart_items.filter(item => {
-        return item.user_id == current_user.id
-    })
+    cart_items = cart_items.filter(item => item.user_id == current_user.id)
     cart_items = cart_items.sort((a,b) => a.cart_id - b.cart_id)
     return cart_items
 }
@@ -2357,16 +2337,14 @@ async function get_restaurant(data){
     if(!restaurants) throw 'Error'
 
     return restaurants
-    .filter(restaurant => {
-        return restaurant.id == data.id
-    })
-    .map(async function(restaurant){
-        let rating = await get_restaurant_reviews(restaurant.id)
-        restaurant.rating = rating.rating
-        restaurant.reviews = rating.reviews.length
-        return restaurant
-    })
-    .pop()
+            .filter(restaurant => restaurant.id == data.id)
+            .map(async function(restaurant){
+                let rating = await get_restaurant_reviews(restaurant.id)
+                restaurant.rating = rating.rating
+                restaurant.reviews = rating.reviews.length
+                return restaurant
+            })
+            .pop()
 }
 
 async function get_restaurant_dishes(data){
@@ -2376,15 +2354,13 @@ async function get_restaurant_dishes(data){
     if(!restaurant_items) throw 'Error'
 
     return Promise.all(restaurant_items
-    .filter(item => {
-        return item.restaurant_id == data.id
-    })
-    .map(async function(item){
-        let reviews = await get_dish_reviews({id: item.id})
-        item.rating = reviews.rating
-        item.reviews = reviews.reviews.length
-        return item
-    }))
+            .filter(item => item.restaurant_id == data.id)
+            .map(async function(item){
+                let reviews = await get_dish_reviews({id: item.id})
+                item.rating = reviews.rating
+                item.reviews = reviews.reviews.length
+                return item
+            }))
 }
 
 async function get_restaurant_schedule(data){
@@ -2393,9 +2369,9 @@ async function get_restaurant_schedule(data){
 
     if(!restaurant_schedules) throw 'Error'
 
-    return restaurant_schedules.filter(schedule => {
-        return schedule.restaurant_id == data.id
-    }).pop()
+    return restaurant_schedules
+    .filter(schedule => schedule.restaurant_id == data.id)
+    .pop()
 }
 
 async function get_restaurant_contacts(data){
@@ -2430,9 +2406,9 @@ async function get_featured_items(){
         items.push(new_item)
     }
 
-    items = items.map(item => {
-        return restaurant_items[item]
-    }).filter(item => item != undefined)
+    items = items
+            .map(item => restaurant_items[item])
+            .filter(item => item != undefined)
 
     items = items.map(async function(item){
         let reviews = await get_dish_reviews({id: item.id})
@@ -2458,9 +2434,7 @@ async function get_ticket_offering_tickets(data){
     
     if(!tickets) throw 'Error'
 
-    return tickets.filter(ticket => {
-        return ticket.ticket_offering_id == data.id
-    })
+    return tickets.filter(ticket => ticket.ticket_offering_id == data.id)
 }
 
 async function get_user_tickets(){
@@ -2497,9 +2471,7 @@ async function choose_ticket(data){
     if(!current_user || !tickets) throw 'Error'
     if(!user_tickets) user_tickets = []
 
-    let ticket = tickets.filter(item => {
-        return item.id == data.id
-    }).pop()
+    let ticket = tickets.filter(item => item.id == data.id).pop()
 
     ticket.user_id = current_user.id
     user_tickets.push(ticket)

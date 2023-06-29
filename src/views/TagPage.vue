@@ -15,18 +15,18 @@
         if(tags.value.length == 0){
             return 'icons/dummy.svg'
         }else{
-            let chosen_tag = tags.value.filter(tag => {
-                return tag.id == route.params.tag_id
-            }).pop()
+            let chosen_tag = tags.value
+                            .filter(tag => tag.id == route.params.tag_id)
+                            .pop()
 
             return chosen_tag?.icon
         }
     })
 
     const get_tag_name = computed(() => {
-        let chosen_tag = tags.value.filter(tag => {
-            return tag.id == route.params.tag_id
-        }).pop()
+        let chosen_tag = tags.value
+                        .filter(tag => tag.id == route.params.tag_id)
+                        .pop()
 
         if(chosen_tag){
             return chosen_tag.name[0].toUpperCase()+chosen_tag.name.substring(1)
@@ -40,15 +40,11 @@
             id: route.params.tag_id
         }
         get_tag_dishes(data)
-        .then(data => {
-            dishes.value = data
-        })
-        .catch(err => console.log('Error',err))
+        .then(data => dishes.value = data)
+        .catch(err => console.log('Error'))
 
         get_tags()
-        .then(data => {
-            tags.value = data
-        })
+        .then(data => tags.value = data)
         .catch(err => console.log('Error'))
 
         page.value.update_cart_counter()

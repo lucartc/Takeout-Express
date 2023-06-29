@@ -14,9 +14,8 @@
     const dish_is_in_cart = ref(false)
 
     function try_add_to_cart(){
-        let data = {
-            id: dish.value.id
-        }
+        let data = { id: dish.value.id }
+        
         add_to_cart(data)
         .then(data => {
             page.value.update_cart_counter()
@@ -26,34 +25,28 @@
     }
 
     function go_to_restaurant_page(){
-        router.push({name: 'restaurant_page', params: {restaurant_id: restaurant.value.id}})
+        router.push({
+            name: 'restaurant_page',
+            params: {restaurant_id: restaurant.value.id}
+        })
     }
 
     onIonViewDidEnter(() => {
-        let data = {
-            id: route.params.dish_id
-        }
+        let data = { id: route.params.dish_id }
 
         get_restaurant_dish(data)
         .then(data => {
             dish.value = data
-
-            let params = {
-                id: dish.value.restaurant_id
-            }
-
+            let params = { id: dish.value.restaurant_id }
             return get_restaurant(params)
         })
         .then(data => {
             restaurant.value = data
-
             return get_cart_items()
         })
         .then(data => {
             if(data.length >= 0){
-                let cart_items = data.filter(item => {
-                    return item.id == dish.value.id
-                })
+                let cart_items = data.filter(item => item.id == dish.value.id)
 
                 if(cart_items.length > 0){
                     dish_is_in_cart.value = true

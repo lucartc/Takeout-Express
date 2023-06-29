@@ -61,19 +61,6 @@ function go_to_home_page(){
 
 onIonViewDidEnter(async() => {
   LocalNotifications.requestPermissions()
-  LocalNotifications.addListener("localNotificationReceived",(notification) => {
-    Preferences.get({key: 'notifications'})
-    .then(data => {
-        let current_notifications = data.value
-        current_notifications = JSON.parse(current_notifications)
-
-        if(!current_notifications) current_notifications = []
-
-        current_notifications.push(notification)
-
-        Preferences.set({key: 'notifications', value: JSON.stringify(current_notifications)})
-    })
-  })
 })
 </script>
 

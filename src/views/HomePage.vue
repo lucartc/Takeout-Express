@@ -14,9 +14,7 @@
 
     onIonViewDidEnter(() => {
         get_featured_items()
-        .then(data => {
-            featured_items.value = data
-        })
+        .then(data => featured_items.value = data)
         .catch(err => console.log('Error'))
         page.value.update_cart_counter()
     })

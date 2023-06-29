@@ -13,10 +13,9 @@
 
     const calculate_total_order_price = computed(() => {
         return cart_items.value
-        .map(item => {
-            return item.price * item.quantity
-        })
-        .reduce((acc,item) => acc+item).toFixed(2)
+        .map(item => item.price * item.quantity)
+        .reduce((acc,item) => acc+item)
+        .toFixed(2)
     })
 
     const cart_items = ref([])
@@ -46,50 +45,32 @@
     }
 
     function notify_new_order(){
-        Preferences.get({key: 'orders'})
-        .then(orders => {
+        Promise.all([
+            Preferences.get({key: 'orders'}),
             Preferences.get({key: 'current_user'})
-            .then(user => {
-                Preferences.get({key: 'notifications'})
-                .then(notifications => {
-                    let current_user = user.value
-                    let current_orders = orders.value
-                    let current_notifications = notifications.value
-                    current_user = JSON.parse(current_user)
-                    current_orders = JSON.parse(current_orders)
-                    current_notifications = JSON.parse(current_notifications)
+        ])
+        .then(data => {
+            let orders, user
+            orders = data[0]
+            user = data[1]
 
-                    if(!current_user || !current_orders) throw 'Error'
-                    if(!current_notifications) current_notifications = []
+            user = JSON.parse(user.value)
+            orders = JSON.parse(orders.value)
 
-                    current_orders = current_orders.filter(order => {
-                        return order.user_id == current_user.id
-                    })
+            if(!user || !orders) throw 'Error'
 
-                    current_orders = current_orders.sort((a,b) => {
-                        return b.id - a.id
-                    })
+            orders = orders.filter(order => order.user_id == user.id)
+            orders = orders.sort((a,b) => b.id - a.id)
 
-                    current_notifications = current_notifications.sort((a,b) => {
-                        return b.id - a.id
-                    })
-
-                    let notification_id = 1
-
-                    if(current_notifications.length > 0){
-                        notification_id = current_notifications[0].id+1
-                    }
-
-                    LocalNotifications.schedule({notifications: [
-                        {
-                            title: 'New order created!',
-                            body: 'The order code is '+current_orders[0].code,
-                            id: notification_id
-                        }
-                    ]})
-                })
-            })
+            LocalNotifications.schedule({notifications: [
+                {
+                    title: 'New order created!',
+                    body: 'The order code is '+orders[0].code,
+                    id: orders[0].id
+                }
+            ]})
         })
+        .catch(err => console.log('Error'))
     }
 </script>
 

@@ -39,14 +39,12 @@
 
         search(data)
         .then(data => {
-            data.restaurants.then(results => {
-                restaurants.value = results
-            })
+            data.restaurants
+            .then(results => restaurants.value = results)
             .catch(err => console.log('Error'))
 
-            data.dishes.then(results => {
-                dishes.value = results
-            })
+            data.dishes
+            .then(results => dishes.value = results)
             .catch(err => console.log('Error'))
         })
         .catch(err => console.log('Error'))

@@ -20,8 +20,8 @@
             }
 
             register(data)
-            .then(data => { emit('user_signed_up') })
-            .catch(data => { console.log('error: ',data) })
+            .then(data => emit('user_signed_up'))
+            .catch(data => console.log('error: ',data))
         }
     }
 

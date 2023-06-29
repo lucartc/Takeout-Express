@@ -65,7 +65,9 @@
         })
         .then(data => {
             data = data.filter(ticket => {
-                return tickets.value.map(item => item.id).indexOf(ticket.id) >= 0
+                return tickets.value
+                .map(item => item.id)
+                .indexOf(ticket.id) >= 0
             })
 
             if(data.length == 1){

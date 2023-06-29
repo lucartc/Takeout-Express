@@ -32,20 +32,13 @@
         router.push({name: 'dish_page', params: {dish_id: props.id}})
     }
 
-    onMounted(() => {
-        check_if_dish_is_in_cart()
-    })
+    onMounted(() => check_if_dish_is_in_cart())
 
     function check_if_dish_is_in_cart(){
         get_cart_items()
         .then(data => {
-            data = data.filter(item => {
-                return item.id == props.id
-            })
-
-            if(data.length > 0){
-                item_is_in_cart.value = true
-            }
+            data = data.filter(item => item.id == props.id)
+            if(data.length > 0) item_is_in_cart.value = true
         })
     }
 

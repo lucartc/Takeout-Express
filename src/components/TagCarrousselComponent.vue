@@ -13,7 +13,7 @@
 
     onMounted(() => {
         get_tags()
-        .then(data => { tags.value = data })
+        .then(data => tags.value = data)
         .catch(err => console.log('Error'))
     })
 </script>
