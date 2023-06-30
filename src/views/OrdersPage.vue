@@ -4,6 +4,7 @@
     import { ref, computed } from 'vue'
     import PageContentComponent from '@/components/PageContentComponent.vue'
     import OrderItemComponent from '@/components/OrderItemComponent.vue'
+    import { Toast } from '@capacitor/toast'
 
     const has_orders = computed(() => {
         return orders.value.length > 0
@@ -15,7 +16,7 @@
     onIonViewDidEnter(() => {
         get_orders()
         .then(data => orders.value = data)
-        .catch(err => console.log('Error'))
+        .catch(async function(err){ await Toast.show({text: 'Error'}) })
         page.value.update_cart_counter()
     })
 </script>

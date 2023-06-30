@@ -2,6 +2,7 @@
     import { get_ticket_offerings } from '../data.js'
     import { ref, onMounted } from 'vue'
     import { useRouter } from 'vue-router'
+    import { Toast } from '@capacitor/toast'
 
     const ticket_offerings = ref([])
     const router = useRouter()
@@ -12,7 +13,7 @@
             ticket_offerings.value = data
             setTimeout(observe_banner_movement,50)
         })
-        .catch(err => console.log('Error',err))
+        .catch(async function(err){ await Toast.show({text: 'Error'}) })
     })
 
     function observe_banner_movement(){

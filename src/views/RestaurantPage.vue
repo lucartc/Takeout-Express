@@ -12,6 +12,7 @@
     import RestaurantPageDishComponent from '@/components/RestaurantPageDishComponent.vue'
     import { ref, computed } from 'vue'
     import { useRoute } from 'vue-router'
+    import { Toast } from '@capacitor/toast'
 
     const route = useRoute()
     const restaurant = ref({})
@@ -86,7 +87,7 @@
             rating.value = data.rating
             reviews.value = data.reviews
         })
-        .catch(err => console.log('Error',err))
+        .catch(async function(err){ await Toast.show({text: 'Error'}) })
 
         update_cart()
     })

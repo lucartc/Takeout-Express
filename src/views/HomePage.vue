@@ -8,6 +8,7 @@
     import FeaturedItemComponent from '../components/FeaturedItemComponent.vue'
     import TagCarrousselComponent from '@/components/TagCarrousselComponent.vue'
     import PageContentComponent from '@/components/PageContentComponent.vue'
+    import { Toast } from '@capacitor/toast'
 
     const featured_items = ref([])
     const page = ref()
@@ -15,7 +16,7 @@
     onIonViewDidEnter(() => {
         get_featured_items()
         .then(data => featured_items.value = data)
-        .catch(err => console.log('Error'))
+        .catch(async function(err){ await Toast.show({text: 'Error'}) })
         page.value.update_cart_counter()
     })
 </script>

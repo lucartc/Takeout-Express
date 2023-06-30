@@ -4,6 +4,7 @@
     import { useRoute, useRouter } from 'vue-router'
     import { ref } from 'vue'
     import PageContentComponent from '@/components/PageContentComponent.vue'
+    import { Toast } from '@capacitor/toast'
 
     const route = useRoute()
     const router = useRouter()
@@ -21,7 +22,7 @@
             page.value.update_cart_counter()
             dish_is_in_cart.value = true
         })
-        .catch(err => console.log('Error'))
+        .catch(async function(err){ await Toast.show({text: 'Error'}) })
     }
 
     function go_to_restaurant_page(){
@@ -55,7 +56,7 @@
                 }
             }
         })
-        .catch(err => console.log('Error'))
+        .catch(async function(err){ await Toast.show({text: 'Error'}) })
         page.value.update_cart_counter()
     })
 </script>

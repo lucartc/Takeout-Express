@@ -3,6 +3,7 @@
     import { useRouter } from 'vue-router'
     import { ref, computed, onMounted } from 'vue'
     import { Preferences } from '@capacitor/preferences'
+    import { Toast } from '@capacitor/toast'
     import {
         logout,
         get_cart_items
@@ -41,14 +42,14 @@
 
     function try_logout(){
         logout()
-        .then(data => router.push('/home'))
-        .catch(err => console.log('Error'))
+        .then(data => router.push('/start'))
+        .catch(async function(err){ await Toast.show({text: 'Error'}) })
     }
 
     function update_cart_items(){
         get_cart_items()
         .then(data => cart_items.value = data)
-        .catch(err => console.log('Error'))
+        .catch(async function(err){ await Toast.show({text: 'Error'}) })
     }
 
     onMounted(() => {

@@ -1,38 +1,18 @@
 <script setup lang="ts">
 import {
-  IonContent,
-  IonCol,
-  IonFab,
-  IonFabButton,
-  IonGrid,
   IonImg,
-  IonRow,
-  IonHeader,
   IonPage,
-  IonTitle,
-  IonToolbar,
-  IonTabs,
-  IonRouterOutlet,
   onIonViewDidEnter,
   useBackButton
 } from '@ionic/vue';
 
-import {
-  Storage
-} from '@ionic/storage'
-
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
-import { camera, trash, close, playCircle, personRemove, thermometerOutline } from 'ionicons/icons'
-import { Camera, CameraResultType, CameraSource, Photo } from '@capacitor/camera'
-import { Filesystem, Directory } from '@capacitor/filesystem'
-import { Preferences } from '@capacitor/preferences'
 import SignInForm from '@/components/SignInForm.vue'
 import SignUpForm from '@/components/SignUpForm.vue'
 import { LocalNotifications } from '@capacitor/local-notifications';
 
 const router = useRouter()
-const message = ref()
 const img = ref()
 const sign_in_form = ref()
 const sign_up_form = ref()
@@ -40,10 +20,6 @@ useBackButton(0,() => {
   sign_in_form.value.hide()
   sign_up_form.value.hide()
 })
-
-function go_to_second_page(){
-  router.push('/second');
-}
 
 function show_sign_in_form(){
   sign_up_form.value.hide()
@@ -66,7 +42,7 @@ onIonViewDidEnter(async() => {
 
 <template>
   <ion-page class="bg-background flex flex-col items-center pt-16 p-5">
-    <ion-img src="takeout_express_text_logo.svg" ref="img" class="w-[40%]"></ion-img>
+    <ion-img src="takeout_express_text_logo.svg" ref="img" class="w-[50%] min-w-[50%] max-w-[50%]"></ion-img>
     <div class="flex flex-col gap-2 absolute bottom-[60px] z-[1] items-center">
       <button class="bg-[#FF0F0F] text-white text-2xl hover:bg-[#ff2f2f] rounded-lg py-3 w-[200px]" @click="show_sign_in_form">Sign in</button>
       <a @click="show_sign_up_form" class="text-[#450808] hover:text-[#fd0f0f]">Don't have an account? <span class="font-bold">Sign Up</span></a>

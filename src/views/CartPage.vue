@@ -6,6 +6,7 @@
     import PageContentComponent from '@/components/PageContentComponent.vue'
     import CartListItemComponent from '@/components/CartListItemComponent.vue'
     import { LocalNotifications } from '@capacitor/local-notifications';
+    import { Toast } from '@capacitor/toast'
 
     const has_items_in_cart = computed(() => {
         return cart_items.value.length > 0
@@ -31,17 +32,18 @@
             cart_items.value = data
             page.value.update_cart_counter()
         })
-        .catch(err => console.log('Error',err))
+        .catch(async function(err){ await Toast.show({text: 'Error'}) })
     }
 
     function try_create_order(){
         create_order()
-        .then(data => {
+        .then(async function(data){
             try_get_carts()
             page.value.update_cart_counter()
             notify_new_order()
+            await Toast.show({text: 'New order created'})
         })
-        .catch(err => console.log('Error',err))
+        .catch(async function(err){ await Toast.show({text: 'Error'}) })
     }
 
     function notify_new_order(){
@@ -70,7 +72,7 @@
                 }
             ]})
         })
-        .catch(err => console.log('Error'))
+        .catch(async function(err){ await Toast.show({text: 'Error'}) })
     }
 </script>
 

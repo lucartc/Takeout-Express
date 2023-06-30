@@ -1,5 +1,6 @@
 <script setup>
     import { IonImg } from '@ionic/vue'
+    import { Toast } from '@capacitor/toast'
     import { ref,watch } from 'vue'
     import {
         remove_from_cart,
@@ -54,7 +55,7 @@
 
         update_cart_item(data)
         .then(data => emit('updated_quantity'))
-        .catch(err => console.log('Error',err))
+        .catch(async function(err){ await Toast.show({text: 'Error'}) })
     }
 
     function try_remove_from_cart(){
@@ -66,7 +67,7 @@
         .then(data => {
             emit('cart_item_removed')
         })
-        .catch(err => console.log('Error'))
+        .catch(async function(err){ await Toast.show({text: 'Error'}) })
     }
 
     const emit = defineEmits([

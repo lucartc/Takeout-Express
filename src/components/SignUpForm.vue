@@ -1,8 +1,8 @@
 <script setup>
     import { onMounted, ref } from 'vue'
     import { useRouter } from 'vue-router'
-    import StatusComponent from '@/components/StatusComponent.vue'
     import { register } from '../data.js'
+    import { Toast } from '@capacitor/toast'
 
     const self = ref()
     const router = useRouter()
@@ -11,8 +11,8 @@
     const password = ref()
     const confirm_password = ref()
 
-    function try_sign_up(){
-        if(password.value.value == confirm_password.value.value){
+    async function try_sign_up(){
+        if(password.value == confirm_password.value){
 
             let data = {
                 username: username.value,
@@ -21,7 +21,9 @@
 
             register(data)
             .then(data => emit('user_signed_up'))
-            .catch(data => console.log('error: ',data))
+            .catch(async function(err){ await Toast.show({text: 'Invalid register data'}) })
+        }else{
+            await Toast.show({text: "Passwords don't match"})
         }
     }
 
@@ -58,7 +60,6 @@
 
 <template>
     <div ref="self" class="bg-[#FF6A00] z-[10] rounded-lg p-5 pb-12 flex-col gap-6 absolute">
-        <StatusComponent class="self-center" ref="status">Status message</StatusComponent>
         <label class="text-white text-xl font-bold self-center">Create your account</label>
         <div class="flex flex-col gap-4">
             <div class="flex flex-col gap-1">

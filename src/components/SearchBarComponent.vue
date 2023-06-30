@@ -4,6 +4,7 @@
     import { search } from '../data.js'
     import RestaurantSearchBarItem from '@/components/RestaurantSearchBarItem.vue'
     import DishSearchBarItem from '@/components/DishSearchBarItem.vue'
+    import { Toast } from '@capacitor/toast'
 
     const search_string = ref()
     const restaurants = ref([])
@@ -41,13 +42,13 @@
         .then(data => {
             data.restaurants
             .then(results => restaurants.value = results)
-            .catch(err => console.log('Error'))
+            .catch(async function(err){ await Toast.show({text: 'Error'}) })
 
             data.dishes
             .then(results => dishes.value = results)
-            .catch(err => console.log('Error'))
+            .catch(async function(err){ await Toast.show({text: 'Error'}) })
         })
-        .catch(err => console.log('Error'))
+        .catch(async function(err){ await Toast.show({text: 'Error'}) })
     }
 </script>
 

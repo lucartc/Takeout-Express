@@ -4,6 +4,7 @@
     import { useRoute } from 'vue-router'
     import { get_ticket_offering_tickets, get_ticket_offerings, get_user_tickets, choose_ticket } from '../data.js'
     import PageContentComponent from '@/components/PageContentComponent.vue'
+    import { Toast } from '@capacitor/toast'
 
     const tickets = ref([])
     const ticket_offering = ref()
@@ -40,10 +41,9 @@
 
         choose_ticket(data)
         .then(data => {
-            console.log('Success!')
             setup()
         })
-        .catch(err => console.log('Error'))
+        .catch(async function(err){ await Toast.show({text: 'Error'}) })
     }
 
     function setup(){
@@ -85,7 +85,7 @@
                 })
             }
         })
-        .catch(err => console.log('Error'))
+        .catch(async function(err){ await Toast.show({text: 'Error'}) })
 
         get_ticket_offerings()
         .then(data => {
@@ -93,7 +93,7 @@
                 return offer.id == route.params.ticket_offering_id
             }).pop()
         })
-        .catch(err => console.log('Error',err))
+        .catch(async function(err){ await Toast.show({text: 'Error'}) })
 
         page.value.update_cart_counter()
     }

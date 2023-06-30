@@ -2,8 +2,8 @@
 
     import { onMounted, ref } from 'vue'
     import { useRouter } from 'vue-router'
-    import StatusComponent from '@/components/StatusComponent.vue'
     import { login } from '../data.js'
+    import { Toast } from '@capacitor/toast'
 
     const self = ref()
     const router = useRouter()
@@ -35,7 +35,7 @@
 
         login(data)
         .then(data => emit('user_signed_in'))
-        .catch(data => console.log('Error: ',data))
+        .catch(async function(err){ await Toast.show({text: 'Invalid login data'}) })
     }
 
     defineExpose({
@@ -55,7 +55,6 @@
 
 <template>
     <div ref="self" class="bg-[#FF6A00] z-[10] rounded-lg p-5 pb-12 flex-col gap-6 absolute">
-        <StatusComponent class="self-center" ref="status">Status message</StatusComponent>
         <label class="text-white text-xl font-bold self-center">Access your account</label>
         <div class="flex flex-col gap-4">
             <div class="flex flex-col gap-1">

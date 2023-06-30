@@ -5,6 +5,7 @@
     import { ref, computed } from 'vue'
     import PageContentComponent from '@/components/PageContentComponent.vue'
     import FeaturedItemComponent from '@/components/FeaturedItemComponent.vue'
+    import { Toast } from '@capacitor/toast'
 
     const route = useRoute()
     const tags = ref([])
@@ -41,11 +42,11 @@
         }
         get_tag_dishes(data)
         .then(data => dishes.value = data)
-        .catch(err => console.log('Error'))
+        .catch(async function(err){ await Toast.show({text: 'Error'}) })
 
         get_tags()
         .then(data => tags.value = data)
-        .catch(err => console.log('Error'))
+        .catch(async function(err){ await Toast.show({text: 'Error'}) })
 
         page.value.update_cart_counter()
     })

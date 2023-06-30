@@ -3,6 +3,7 @@
     import { get_tags } from '../data.js'
     import { ref, onMounted } from 'vue'
     import { useRouter } from 'vue-router'
+    import { Toast } from '@capacitor/toast'
 
     const tags = ref()
     const router = useRouter()
@@ -14,7 +15,7 @@
     onMounted(() => {
         get_tags()
         .then(data => tags.value = data)
-        .catch(err => console.log('Error'))
+        .catch(async function(err){ await Toast.show({text: 'Error'}) })
     })
 </script>
 

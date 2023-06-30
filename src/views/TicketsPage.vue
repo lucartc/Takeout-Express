@@ -2,6 +2,7 @@
     import { IonPage, onIonViewDidEnter } from '@ionic/vue'
     import { get_user_tickets } from '../data.js'
     import { ref, computed } from 'vue'
+    import { Toast } from '@capacitor/toast'
     import PageContentComponent from '@/components/PageContentComponent.vue'
 
     const has_tickets = computed(() => {
@@ -14,7 +15,7 @@
     onIonViewDidEnter(() => {
         get_user_tickets()
         .then(data => tickets.value = data)
-        .catch(err => console.log('Error'))
+        .catch(async function(err){ await Toast.show({text: 'Error'}) })
         page.value.update_cart_counter()
     })
 </script>
