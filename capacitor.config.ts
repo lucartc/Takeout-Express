@@ -8,8 +8,8 @@ const config: CapacitorConfig = {
     SplashScreen: {
       backgroundColor: '#A60000ff',
       androidSplashResourceName: 'takeout_express_foreground',
-      launchShowDuration: 3000,
-      androidScaleType: 'CENTER'
+      launchShowDuration: 1000,
+      androidScaleType: 'CENTER',
     }
   },
   appId: 'tech.jlucartc.takeout_express',

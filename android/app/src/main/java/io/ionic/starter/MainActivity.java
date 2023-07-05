@@ -1,4 +1,4 @@
-package io.ionic.starter;
+package tech.jlucartc.takeout_express;
 
 import com.getcapacitor.BridgeActivity;
 

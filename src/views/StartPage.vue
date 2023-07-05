@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import {
-  IonImg,
   IonPage,
   onIonViewDidEnter,
   useBackButton
@@ -42,7 +41,7 @@ onIonViewDidEnter(async() => {
 
 <template>
   <ion-page class="bg-background flex flex-col items-center pt-16 p-5">
-    <ion-img src="takeout_express_text_logo.svg" ref="img" class="w-[50%] min-w-[50%] max-w-[50%]"></ion-img>
+    <img :src="'takeout_express_text_logo.svg'" ref="img" class="w-[70%] min-w-[70%] max-w-[70%]">
     <div class="flex flex-col gap-2 absolute bottom-[60px] z-[1] items-center">
       <button class="bg-[#FF0F0F] text-white text-2xl hover:bg-[#ff2f2f] rounded-lg py-3 w-[200px]" @click="show_sign_in_form">Sign in</button>
       <a @click="show_sign_up_form" class="text-[#450808] hover:text-[#fd0f0f]">Don't have an account? <span class="font-bold">Sign Up</span></a>
