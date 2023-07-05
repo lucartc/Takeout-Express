@@ -55,7 +55,7 @@
 <template>
     <div class="w-full flex flex-row gap-2 relative">
         <input @keyup="update_search_results" @focusout="hide_search_results" v-model="search_string" class="grow drop-shadow-md p-3 text-dark bg-gray-100 box-border rounded-lg" type="text">
-        <button @click="update_search_results" class="rounded-lg bg-red-500 p-3 box-border flex flex-row justify-center items-center">
+        <button @click="update_search_results" class="rounded-lg bg-background p-3 box-border flex flex-row justify-center items-center">
             <ion-img src="icons/search.svg"></ion-img>
         </button>
         <div v-if="show_results" class="flex gap-4 flex-col w-full max-h-[200px] drop-shadow-md rounded-b-lg bg-gray-200 absolute left-0 top-[100%] z-[1] overflow-y-scroll p-3 box-border">

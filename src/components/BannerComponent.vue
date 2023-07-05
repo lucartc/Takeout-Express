@@ -60,7 +60,7 @@
 <template>
     <div class="flex flex-col gap-4 w-full">
         <div id="carroussel" class="flex flex-row overflow-x-scroll snap-x w-full aspect-[2/1]">
-            <div @click="go_to_offer_page(offer)" v-for="offer in ticket_offerings" class="flex flex-row justify-center items-center relative min-w-full min-h-full bg-red-500 rounded-lg">
+            <div @click="go_to_offer_page(offer)" v-for="offer in ticket_offerings" class="flex flex-row justify-center items-center relative min-w-full min-h-full bg-background rounded-lg">
                 <img :id="'ticket_offering_'+offer.id" class="absolute w-full h-full brightness-75 rounded-lg bg-red-700 drop-shadow-md snap-center" :src="offer.banner">
                 <div class="flex flex-col absolute top-[20px] left-[20px] gap-2">
                     <label class="text-4xl font-bold text-white">{{ offer.title }}</label>

@@ -55,7 +55,7 @@
             <label class="text-sm font-bold text-dark">${{ price.toFixed(2) }}</label>
             <label class="text-xs text-dark">{{ rating }} stars, {{ reviews }} reviews</label>
         </div>
-        <div v-if="!item_is_in_cart" @click="try_add_to_cart" class="ml-auto mr-2 flex flex-row justify-center items-center h-[80%] min-h-[80%] max-h-[80%] aspect-square rounded-lg bg-red-500 self-center drop-shadow-md">
+        <div v-if="!item_is_in_cart" @click="try_add_to_cart" class="ml-auto mr-2 flex flex-row justify-center items-center h-[80%] min-h-[80%] max-h-[80%] aspect-square rounded-lg bg-background self-center drop-shadow-md">
             <img class="h-[45%] min-h-[45%] max-h-[45%]" :src="'icons/cart.svg'">
         </div>
         <div v-else class="ml-auto mr-2 flex flex-row justify-center items-center h-[60%] min-h-[60%] max-h-[60%] aspect-[2/1] rounded-lg bg-green-500 self-center drop-shadow-md">

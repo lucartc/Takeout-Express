@@ -81,7 +81,7 @@
                         <label class="text-xs text-dark">{{ dish?.rating?.toFixed(2) }} stars, {{ dish?.reviews }} reviews</label>
                     </div>
                 </div>
-                <div v-if="!dish_is_in_cart" @click="try_add_to_cart" class="text-white text-2xl justify-center items-center gap-4 font-bold flex flex-row w-full min-w-full max-w-full aspect-[8/1] bg-red-500 rounded-lg drop-shadow-md">
+                <div v-if="!dish_is_in_cart" @click="try_add_to_cart" class="text-white text-2xl justify-center items-center gap-4 font-bold flex flex-row w-full min-w-full max-w-full aspect-[8/1] bg-background rounded-lg drop-shadow-md">
                     Add to cart <img class="h-[50%] min-h-[50%] max-h-[50%]" :src="'icons/cart.svg'">
                 </div>
                 <div v-else class="text-white text-2xl justify-center items-center gap-4 font-bold flex flex-row w-full min-w-full max-w-full aspect-[8/1] bg-green-500 rounded-lg drop-shadow-md">

@@ -85,7 +85,7 @@
                     <CartListItemComponent v-for="cart in cart_items" v-bind="cart" @updated_quantity="try_get_carts" @cart_item_removed="try_get_carts" class="snap-end"></CartListItemComponent>
                     <label class="snap-end text-xl text-dark font-bold">Total: ${{ calculate_total_order_price }}</label>
                     <div class="flex flex-row gap-4 pb-16 snap-end w-full min-w-full max-w-full">
-                        <div @click="try_create_order" class="flex flex-row text-lg font-bold bg-red-500 px-3 py-2 text-white justify-center items-center drop-shadow-md rounded-lg w-full min-w-full max-w-full">Create order</div>
+                        <div @click="try_create_order" class="flex flex-row text-lg font-bold bg-background px-3 py-2 text-white justify-center items-center drop-shadow-md rounded-lg w-full min-w-full max-w-full">Create order</div>
                     </div>
                 </div>
                 <div v-else class="flex flex-row text-white justify-center items-center gap-3 w-full min-w-full max-w-full aspect-[7/1] rounded-lg drop-shadow-md bg-red-600">

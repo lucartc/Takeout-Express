@@ -126,7 +126,7 @@
                                 <div class="flex flex-row justify-center items-center bg-gray-100 w-[75%] min-w-[75%] max-w-[75%] text-dark">{{ schedule.sunday.start }} - {{ schedule.sunday.end }}</div>
                             </div>
                             <div class="flex flex-row">
-                                <div class="text-gray-100 flex flex-row justify-center items-center p-2 w-[25%] min-w-[25%] max-w-[25%] bg-red-500">Mon</div>
+                                <div class="text-gray-100 flex flex-row justify-center items-center p-2 w-[25%] min-w-[25%] max-w-[25%] bg-background">Mon</div>
                                 <div class="flex flex-row justify-center items-center bg-gray-200 w-[75%] min-w-[75%] max-w-[75%] text-dark">{{ schedule.monday.start }} - {{ schedule.monday.end }}</div>
                             </div>
                             <div class="flex flex-row">
@@ -134,7 +134,7 @@
                                 <div class="flex flex-row justify-center items-center bg-gray-100 w-[75%] min-w-[75%] max-w-[75%] text-dark">{{ schedule.tuesday.start }} - {{ schedule.tuesday.end }}</div>
                             </div>
                             <div class="flex flex-row">
-                                <div class="text-gray-100 flex flex-row justify-center items-center p-2 w-[25%] min-w-[25%] max-w-[25%] bg-red-500">Wed</div>
+                                <div class="text-gray-100 flex flex-row justify-center items-center p-2 w-[25%] min-w-[25%] max-w-[25%] bg-background">Wed</div>
                                 <div class="flex flex-row justify-center items-center bg-gray-200 w-[75%] min-w-[75%] max-w-[75%] text-dark">{{ schedule.wednesday.start }} - {{ schedule.wednesday.end }}</div>
                             </div>
                             <div class="flex flex-row">
@@ -142,7 +142,7 @@
                                 <div class="flex flex-row justify-center items-center bg-gray-100 w-[75%] min-w-[75%] max-w-[75%] text-dark">{{ schedule.thursday.start }} - {{ schedule.thursday.end }}</div>
                             </div>
                             <div class="flex flex-row">
-                                <div class="text-gray-100 flex flex-row justify-center items-center p-2 w-[25%] min-w-[25%] max-w-[25%] bg-red-500">Fri</div>
+                                <div class="text-gray-100 flex flex-row justify-center items-center p-2 w-[25%] min-w-[25%] max-w-[25%] bg-background">Fri</div>
                                 <div class="flex flex-row justify-center items-center bg-gray-200 w-[75%] min-w-[75%] max-w-[75%] text-dark">{{ schedule.friday.start }} - {{ schedule.friday.end }}</div>
                             </div>
                             <div class="flex flex-row">

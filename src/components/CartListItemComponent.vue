@@ -91,7 +91,7 @@
                 </div>
             </div>
             <label class="font-bold mt-2 text-dark">${{ (quantity * price).toFixed(2) }}</label>
-            <div @click="try_remove_from_cart" class="flex flex-col justify-center items-center h-[30%] min-h-[30%] max-h-[30%] aspect-square absolute rounded-bl-lg rounded-tr-lg right-0 top-0 bg-red-500">
+            <div @click="try_remove_from_cart" class="flex flex-col justify-center items-center h-[30%] min-h-[30%] max-h-[30%] aspect-square absolute rounded-bl-lg rounded-tr-lg right-0 top-0 bg-background">
                 <img class="h-[45%] min-h-[45%] max-h-[45%]" :src="'icons/trash.svg'">
             </div>
         </div>

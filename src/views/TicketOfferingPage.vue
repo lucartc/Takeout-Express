@@ -118,7 +118,7 @@
                 <div :class="['w-full','min-w-full','max-w-full','flex','flex-col','p-4','box-border',ticket.chosen ? 'bg-orange-500' : 'bg-orange-300','gap-2','drop-shadow-md']" v-for="ticket in tickets">
                     <div class="flex flex-row gap-3 items-center justify-between">
                         <label class="font-bold text-xl w-[60%] min-w-[60%] max-w-[60%] text-dark text-ellipsis overflow-hidden whitespace-nowrap">{{ ticket.name }}</label>
-                        <label class="py-1 px-4 text-white box-border bg-red-500 font-bold text-xl rounded-lg w-fit">{{ ticket.value }}% off</label>
+                        <label class="py-1 px-4 text-white box-border bg-background font-bold text-xl rounded-lg w-fit">{{ ticket.value }}% off</label>
                     </div>
                     <label class="text-sm text-dark">{{ ticket.description }}</label>
                 </div>
@@ -130,11 +130,11 @@
                 <div @click="set_chosen_ticket(ticket)" :class="['w-full','min-w-full','max-w-full','flex','flex-col','p-4','box-border',ticket.chosen ? 'bg-orange-500' : 'bg-orange-300','gap-2','drop-shadow-md']" v-for="ticket in tickets">
                     <div class="flex flex-row gap-3 items-center justify-between">
                         <label class="font-bold text-xl w-[60%] min-w-[60%] max-w-[60%] text-dark text-ellipsis overflow-hidden whitespace-nowrap">{{ ticket.name }}</label>
-                        <label class="py-1 px-4 text-white box-border bg-red-500 font-bold text-xl rounded-lg w-fit">{{ ticket.value }}% off</label>
+                        <label class="py-1 px-4 text-white box-border bg-background font-bold text-xl rounded-lg w-fit">{{ ticket.value }}% off</label>
                     </div>
                     <label class="text-sm text-dark">{{ ticket.description }}</label>
                 </div>
-                <div @click="try_choose_ticket" v-if="has_chosen_ticket" class="w-full min-w-full max-w-full aspect-[7/1] text-white text-lg bg-red-500 font-bold rounded-lg py-2 px-4 flex flex-row justify-center items-center drop-shadow-md">
+                <div @click="try_choose_ticket" v-if="has_chosen_ticket" class="w-full min-w-full max-w-full aspect-[7/1] text-white text-lg bg-background font-bold rounded-lg py-2 px-4 flex flex-row justify-center items-center drop-shadow-md">
                     Choose {{ get_chosen_ticket_name }}
                 </div>
             </div>
